@@ -5,4 +5,10 @@ from ..models import User,Pitch,Comment,Upvote,Downvote
 from .form import UpdateProfile,PitchForm,CommentForm
 from .. import db
 
-
+@main.route('/')
+def index():
+    pitches = Pitch.query.all()
+    job = Pitch.query.filter_by(category = 'Job').all() 
+    event = Pitch.query.filter_by(category = 'Events').all()
+    advertisement = Pitch.query.filter_by(category = 'Advertisement').all()
+    return render_template('index.html', job = job,event = event, pitches = pit
